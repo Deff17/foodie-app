@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import MainPage from '../container/mainPage/MainPage'
-import Tryout from './Tryout';
 import Autocomplete from '../component/autocomplete/Autocomplete';
 
 
