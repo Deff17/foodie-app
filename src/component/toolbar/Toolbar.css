@@ -4,7 +4,6 @@
 }
 
 .ToolbarMain button {
-    size: large;
     display: block;
     font: inherit;
     padding: 5px;
