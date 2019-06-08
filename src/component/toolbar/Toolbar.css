@@ -15,4 +15,6 @@
     align-content: flex-end;
     float: right;
 }
-
+.center {
+    margin: auto;
+}
