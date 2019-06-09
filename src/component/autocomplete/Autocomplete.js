@@ -80,11 +80,12 @@ class Autocomplete extends Component {
     }
 
     getChipItem = item => {
+        const style = item.type === 'add' ? this.props.classes.chipAdd : this.props.classes.chipRemove;
         return (
             <Chip
+                className={style}
                 key={item.label}
                 label={item.label}
-                color={item.type === 'add' ? 'primary' : 'secondary' }
                 onDelete={this.handleDelete}
             />
         )
@@ -95,10 +96,7 @@ class Autocomplete extends Component {
         if (selectedItems.length && !inputValue.length && event.key === 'Backspace') {
             selectedItems.splice(selectedItems.length - 1, 1);
             this.setState({ selectedItems });
-            // newSelectedItems.splice(newSelectedItems.length - 1, 1);
-            // this.setState({ selectedItems: newSelectedItems });
-            // newSelectedItems.splice(newSelectedItems.indexOf(item), 1);
-            // this.setState(selectedItems.slice(0, selectedItems.length - 1));
+
         }
 
         if (event.keyCode === 38) {
@@ -108,20 +106,11 @@ class Autocomplete extends Component {
             this.setState({ activeItem: this.state.activeItem - 1 })
 
         } else if (event.keyCode === 40) {
-            //alert(this.state.activeItem)
             if (this.state.activeItem - 1 === this.state.filteredItems.length)
                 return;
             this.setState({ activeItem: this.state.activeItem + 1 })
         }
 
-        // if (event.keyCode === 13) {
-
-        //     let newSelectedItems = [...this.state.selectedItems];
-        //     if (newSelectedItems.indexOf(item) === -1) {
-        //         newSelectedItems = [...newSelectedItems, item];
-        //     }
-        //     this.setState({ inputValue: '', selectedItems: newSelectedItems });
-        // }
     }
 
     handleInputChange = event => {
@@ -171,31 +160,33 @@ class Autocomplete extends Component {
             });
     }
 
+    // getSearchIcon = () => (
+    //     <a className={this.props.classes.anchor} href='/results' ><SearchIcon className={this.props.classes.search}/></a>
+    // )
+
     render() {
         return (
-            <div className={this.props.classes.Autocomplete}>
+            <div className={this.props.classes.root}>
                 <TextField
-                    className={styles.root}
+                    className={this.props.classes.textField}
                     variant='filled'
-                    InputProps={{ startAdornment: this.state.selectedItems.map(item => this.getChipItem(item)) }}
+                    InputProps={{className: this.props.classes.input, startAdornment: this.state.selectedItems.map(item => this.getChipItem(item)) }}
                     onKeyDown={this.handleKeyDown}
                     onChange={this.handleInputChange}
                     value={this.state.inputValue}
                     inputRef={this.textInput}
-                />
-                <a href='/results' ><SearchIcon/></a>
-                {this.state.isOpen ? <Paper square>
+                >
+                
+                </TextField >
+
+                <a href='/results' ><SearchIcon className={this.props.classes.search}/></a>
+                
+                {this.state.isOpen ? <Paper square className={this.props.classes.paper}>
                     {<div>
                         <div>{
                             this.state.filteredItems.map((suggestion, index) =>
                                 (
-                                    // <MenuItem
-                                    //     key={suggestion.value}
-                                    //     onClick={() => this.handleChange(suggestion)}
-                                    //     selected={index === this.state.activeItem}
-                                    // >
-                                    //     {suggestion.value}
-                                    // </MenuItem>
+                                
                                     <SuggestionIngredient
                                         key={suggestion.value}
                                         suggestion={suggestion}
@@ -227,7 +218,62 @@ class Autocomplete extends Component {
 
 }
 
+const stylesAutocomplete = {
+    root: {
+        textAlign: 'center'
+    },
+    textFiledRoot :{
+        backgroundColor: 'FFFFFF'
+    },
+    chipAdd: {
+        backgroundColor: '#DCEDC1 !important'
+    },
+    chipRemove: {
+        backgroundColor: '#FFAAA5 !important'
+    },
+    textField: {
+        width: '40%',
+        marginLeft: 'auto',
+        marginRight: 'auto',            
+        paddingBottom: 0,
+        marginTop: 0,
+        fontWeight: 500,
+        textAlign: 'center',
+        backgroundColor: 'white',
+        borderTopLeftRadius: '25px',
+        borderBottomLeftRadius: '25px',
+    },
+    input: {
+        background: 'none'
+    },
+    paper: {
+        width: '40%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 10,
+        borderRadius: '10px',
+    },
 
-export default Autocomplete;
+    // anchor: {
+    //     marginLeft: '95%',
+    // },
+
+    search: {
+        fontSize: 'large',
+        background: 'white',
+        borderTopRightRadius: '25px',
+        borderBottomRightRadius: '25px',
+        padding: '15px',
+        marginLeft: '0',
+        fontSize: '30px',
+        color: '#D2D2D2'
+    }
+
+}
+
+//'#DCEDC1' : '#FFAAA5'
+
+
+export default withStyles(stylesAutocomplete)(Autocomplete);
 
 

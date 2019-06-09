@@ -9,7 +9,7 @@ class MainPage extends Component {
     render() {
         return (
             <div >
-                <Toolbar classes = {classes}/>
+                <Toolbar isMainPage={true}/>
             </div>
         )
     }
