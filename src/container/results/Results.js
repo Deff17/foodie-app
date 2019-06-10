@@ -9,11 +9,9 @@ class Results extends Component {
 
     render() {
         return (
-            <div >
+            <div>
                 <Toolbar classes={classes}/>
                 <Result key={1}/>
-                <Result key={2}/>
-                <Result key={3}/>
             </div>
         )
     }
