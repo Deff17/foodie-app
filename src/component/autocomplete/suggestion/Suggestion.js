@@ -13,11 +13,11 @@ const suggestionIngredient = (props) => {
         <Fragment>
             <MenuItem className={props.classes.item}>
                 {suggestion.value}
-            </MenuItem>
-            <div className={props.classes.buttons}>
+                <div className={props.classes.buttons}>
                 <AddIcon className={props.classes.add} onClick={() => handleClick(suggestion, 'add')} />
                 <Remove className={props.classes.remove} onClick={() => handleClick(suggestion, 'remove')} />
             </div>
+            </MenuItem>
         </Fragment>
     )
 };
