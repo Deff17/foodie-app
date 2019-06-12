@@ -1,6 +1,6 @@
 import React from 'react';
 import Autocomplete from "../../component/autocomplete/Autocomplete";
-import { withStyles } from '@material-ui/styles';
+import {withStyles} from '@material-ui/styles';
 import RoastChicken from './roast-chicken-legs.jpg';
 import StarYellow from './star-yellow.png';
 import StarRed from './star-red.png';
@@ -56,7 +56,28 @@ const recipe = (props) => {
                         <div className={props.classes.itemDescriptionCell}>
                             <div className={props.classes.itemDescription}>
                                 <p>
-                                    {recipeObject.recipe}
+                                    2
+                                    simply set the height to auto, that should fix the problem, because div are block
+                                    elements so they stretch out to full width and height of any element contained in
+                                    it. if height set to auto not working then simple don't add the height, it should
+                                    adjust and make sure that the div is not inheriting any height from it's parent
+                                    element as well... 2
+                                    simply set the height to auto, that should fix the problem, because div are block
+                                    elements so they stretch out to full width and height of any element contained in
+                                    it. if height set to auto not working then simple don't add the height, it should
+                                    adjust and make sure that the div is not inheriting any height from it's parent
+                                    element as well... 2
+                                    simply set the height to auto, that should fix the problem, because div are block
+                                    elements so they stretch out to full width and height of any element contained in
+                                    it. if height set to auto not working then simple don't add the height, it should
+                                    adjust and make sure that the div is not inheriting any height from it's parent
+                                    element as well... 2
+                                    simply set the height to auto, that should fix the problem, because div are block
+                                    elements so they stretch out to full width and height of any element contained in
+                                    it. if height set to auto not working then simple don't add the height, it should
+                                    adjust and make sure that the div is not inheriting any height from it's parent
+                                    element as well...
+
                                 </p>
                             </div>
                         </div>
@@ -78,7 +99,9 @@ const stylesRecipe = {
             marginBottom: '50px',
             margin: 'auto',
             backgroundColor: '#f2f2f2',
-            width: '70%'
+            width: '70%',
+            height: 'auto',
+            overflow: 'auto',
         },
 
     image: {
@@ -93,17 +116,16 @@ const stylesRecipe = {
 
         margin: '5%',
         borderBottom: '1px solid grey',
-        textAlign: 'center',
+        fontSize: '3vw',
         height: 'auto',
     },
 
     descriptionGrid: {
 
         display: 'grid',
-        gridTemplateColumns: '0% 30% 55% 0%',
-        gridTemplateRows: '10%  85%',
-        gridColumnGap: '5%',
-        gridRowGap: '5%'
+        gridTemplateColumns: '5% 30% 10% 50% 5%',
+        gridTemplateRows: '30px 20px auto 50px',
+
     },
 
     itemIngredientsTitleCell: {
@@ -114,33 +136,31 @@ const stylesRecipe = {
     },
 
     itemDescriptionTitleCell: {
-        gridColumnStart: '3',
-        gridColumnEnd: '3',
+        gridColumnStart: '4',
+        gridColumnEnd: '4',
         gridRowStart: '1',
         gridRowEnd: '1',
     },
     itemIngredientsCell: {
         gridColumnStart: '2',
         gridColumnEnd: '2',
-        gridRowStart: '2',
-        gridRowEnd: '2',
+        gridRowStart: '3',
+        gridRowEnd: '3',
         backgroundColor: '#d6d6d6'
     },
 
     itemDescriptionCell: {
-        gridColumnStart: '3',
-        gridColumnEnd: '3',
-        gridRowStart: '2',
-        gridRowEnd: '2',
+        gridColumnStart: '4',
+        gridColumnEnd: '4',
+        gridRowStart: '3',
+        gridRowEnd: '3',
         backgroundColor: '#d6d6d6',
     },
-    itemIngredients: {
-        margin: '15px',
-    },
+    itemIngredients: {},
 
     itemDescription: {
-        margin: '15px',
-
+        marginLeft: '20px',
+        marginRight:'20px',
     },
 
     rating: {
