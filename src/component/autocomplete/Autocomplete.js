@@ -252,10 +252,6 @@ class Autocomplete extends Component {
 const stylesAutocomplete = {
     root: {
         textAlign: 'center',
-        position: "absolute",
-        top: '40%',
-        left: '50%',
-        transform: 'translateX(-50%) translateY(-50%)',
         width: '100%'
     },
     rootResults: {
@@ -270,7 +266,8 @@ const stylesAutocomplete = {
         backgroundColor: '#FFAAA5 !important'
     },
     textField: {
-        width: '45%',
+        width: '40%',
+        minWidth: "20%",
         marginLeft: 'auto',
         marginRight: 'auto',
         paddingBottom: 0,

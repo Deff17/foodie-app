@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<svg id="svg" version="1.1" style="display: block;" viewBox="0.148 0.121 399.909 187.745" xmlns="http://www.w3.org/2000/svg">-->
-<!--    <defs>-->
-<!--        <pattern id="pattern-0" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">-->
-<!--            <rect x="0" y="0" width="50" height="100" style="fill: black;"/>-->
-<!--        </pattern>-->
-<!--        <linearGradient id="gradient-3" gradientUnits="userSpaceOnUse" x1="221.781" y1="-17.569" x2="221.781" y2="162.313" gradientTransform="matrix(-0.999997, 0.002512, -0.002478, -0.986265, 326.399578, 161.652725)" spreadMethod="pad">-->
-<!--            <stop offset="0" style="stop-color: rgb(175,15,48);"/>-->
-<!--            <stop offset="1" style="stop-color: rgb(255,221,0);"/>-->
-<!--        </linearGradient>-->
-<!--    </defs>-->
-<!--    <g id="svgg" opacity="0.5">-->
-<!--&lt;!&ndash;        <path id="path1" d="M 0.317 160.263 C 0.491 160.322 54.672 181.321 96.41 186.555 C 138.827 191.875 170.592 177.656 200.188 146.3 C 235.21 109.196 258.892 111.366 299.457 117.682 C 336.776 123.493 399.859 155.012 399.781 157.423 C 399.76 158.082 400 0 400 0 L 0 0" stroke="none" fill-rule="evenodd" style="fill: url(#gradient-3);"/>&ndash;&gt;-->
-<!--        <path id="path1" d="M627.467,639.7s1079.822,343.893,1488.414,29.912,432.166-278.692,432.166-278.692L2548-60.483l-1224.557-.076L628-60.483Z" transform="translate(-627.467 60.559)" style="fill: url(#gradient-3)"/>-->
-<!--    </g>-->
-<!--</svg>-->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920.58" height="862.364" viewBox="0 0 1920.58 862.364">
     <defs>
         <linearGradient id="linear-gradient" x1="0.5" y1="0.078" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
@@ -23,6 +8,6 @@
         </linearGradient>
     </defs>
     <g id="svgg" opacity="0.65">
-        <path id="Path_412" d="M627.467,639.7s1079.822,343.893,1488.414,29.912,432.166-278.692,432.166-278.692L2548-60.483l-1224.557-.076L628-60.483Z" transform="translate(-627.467 60.559)" fill="url(#linear-gradient)"/>
+        <path id="Path_412" d="M627.467,518.475s1079.822,284.36,1488.414,24.734,432.166-230.446,432.166-230.446L2548-60.5l-1224.557-.063L628-60.5Z" transform="translate(-627.467 60.559)" fill="url(#linear-gradient)"/>
     </g>
 </svg>
