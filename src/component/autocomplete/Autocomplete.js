@@ -16,6 +16,8 @@ const suggestionsItems = [
     { label: 'Lemon' },
     { label: 'Orange' },
     { label: 'Pepper' },
+    { label: 'Rum' },
+    { label: 'Radish' },
     { label: 'Salmon' },
     { label: 'Sugar' },
     { label: 'Backon' },
@@ -58,6 +60,7 @@ const suggestionsRecipes = [
     { label: 'Cheesecake' },
     { label: 'Spicy Salmon with Garlic Souce' },
     { label: 'Spicy Chicken' },
+    { label: 'Roast Chicken Legs with Thyme and Lemon' }
 ].map(suggestion => ({
     value: suggestion.label,
     label: suggestion.label,
@@ -188,13 +191,17 @@ class Autocomplete extends Component {
     render() {
 
         console.log(this.state.selectedItems)
-        
+
         return (
             <div className={this.props.isResultsPage ? this.props.classes.rootResults : this.props.classes.root}>
                 <TextField
                     className={this.props.classes.textField}
                     variant='filled'
-                    InputProps={{ className: this.props.classes.input, disableUnderline: true, startAdornment: this.state.selectedItems.map(item => this.getChipItem(item)) }}
+                    InputProps={{
+                        className: this.props.classes.input,
+                        disableUnderline: true,
+                        startAdornment: this.state.selectedItems.map(item => this.getChipItem(item))//, this.getChipFromInput(this.state.inputValue)] 
+                    }}
                     onKeyDown={this.handleKeyDown}
                     onChange={this.handleInputChange}
                     value={this.state.inputValue}
@@ -289,9 +296,9 @@ const stylesAutocomplete = {
         background: 'white',
         borderTopRightRadius: '25px',
         borderBottomRightRadius: '25px',
-        padding: '16px',
+        padding: '10px',
         marginLeft: '0',
-        fontSize: '30px',
+        fontSize: '36px !important',
         color: '#CACACA'
     }
 

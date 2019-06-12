@@ -3,20 +3,24 @@ import Toolbar from '../../component/toolbar/Toolbar';
 import Result from '../../component/result/Result';
 import Route from 'react-router-dom';
 import classes from './Results.css';
+import deburr from 'lodash/deburr';
 
 const recipes = [{
-    ingridients: ['Salmon', 'Pepper', 'Egg'],
-    title: 'Salmon with papper',
-    recepie: ' DOOOOOOOOOOOOOOOOOOOO IT, JUST DOOOOOOOOOOOO IT, IT\'S just SALMON'
+    ingridients: ['Chicken', 'Lemon', 'Parsley'],
+    title: "Roast Chicken Legs with Thyme and Lemon",
+    recipe: 'This quick-and-easy, simple-and-delicious roasted chicken with lemon and rosemary is perfect for a weeknight sheet pan dinner or when you have guests.',
+    id: '1'
 }, {
-    ingridients: ['Apple', 'Lemon', 'Egg', 'Flour'],
-    title: 'APPLE PIE',
-    recepie: ' DOOOOOOOOOOOOOOOOOOOO IT, JUST DOOOOOOOOOOOO IT, IT\'S just APPLE PIE'
+    ingridients: ['Wheat Ramen Noodles', 'Jalapeno Chilli', 'Lime', 'Chicken', 'Curry'],
+    title: 'Chicken Curry Ramen',
+    recipe: 'This tasteful chicken noodle soup with zesty Asian flair features chicken broth, soy sauce, garlic, ginger and colourful vegetables, and it’s ready in less than 30 minutes.',
+    id: '2'
 },
 {
-    ingridients: ['Chicken', 'Lemon', 'Tomato'],
-    title: 'Chicken in tomato souce',
-    recipe: ' DOOOOOOOOOOOOOOOOOOOO IT, JUST DOOOOOOOOOOOO IT, IT\'S just Chicken in tomato souce'
+    ingridients: ['Chicken', 'Lemon', 'Tomato', 'Garlic'],
+    title: 'Chinese Fried Rice with Chicken and Vegetables',
+    recipe: 'This is a staple of Thai cooking. Adjust species to your own tastes for a really great use for leftover rice! Thai basil has w different flavor than that of regular basil and makes all the different ini this recipe. It is fast and fairly dish, ideal for everyone.',
+    id: '3'
 }
 ]
 
@@ -27,17 +31,32 @@ class Results extends Component {
 
         this.state = {
             selectedItems: JSON.parse(localStorage.getItem('SelectedItems')),
+            inputValue: JSON.parse(localStorage.getItem('InputValue'))
         }
     }
 
     getRecipes = (recipes) => {
-        const addedItems = this.state.selectedItems.filter(item => item.type === 'add');
-        const removedItems = this.state.selectedItems.filter(item => item.type === 'remove');
-        console.log(removedItems)
-        // const properRecipes = recipes.filter(recipe => { recipe.some(r=> addedItems.indexOf(r) >= 0) && !recipe.some(r=> removedItems.indexOf(r) >= 0)})
-        // console.log(properRecipes)
-        return [];
+        const fullRecipe = recipes.filter(recipe => deburr(recipe.title) === deburr(this.state.inputValue))
 
+        if (fullRecipe) return fullRecipe;
+
+
+        const addedItems = this.state.selectedItems.filter(item => item.type === 'add').map(i => i.value);
+        const removedItems = this.state.selectedItems.filter(item => item.type === 'remove').map(i => i.value);
+        console.log(removedItems)
+        const properRecipes = recipes.filter(recipe => {
+            //let keep = false;
+
+            const foundAdded = recipe.ingridients.some(r => addedItems.includes(r))
+            const foundeRemoved = recipe.ingridients.some(r => removedItems.includes(r))
+            return foundAdded && !foundeRemoved
+        })
+        return properRecipes;
+
+    }
+
+    onResultClicked = (recipe) => {
+        localStorage.setItem('ClickedItem', JSON.stringify(recipe));
     }
 
     render() {
@@ -48,7 +67,14 @@ class Results extends Component {
                 <Toolbar isMainPage={false} />
                 {
                     this.getRecipes(recipes).map(recipe => {
-                        return (<Result key={recipe.title} title={recipe.title} recipe={recipe.recipe} ingridients={recipe.ingridients}/>)
+                        return (<Result
+                            onClick={() => this.onResultClicked(recipe)}
+                            key={recipe.title}
+                            title={recipe.title}
+                            recipe={recipe.recipe}
+                            ingridients={recipe.ingridients}
+                            id={recipe.id}
+                        />)
                     })
                 }
 

@@ -7,22 +7,36 @@ import pic2 from "./pic2.jpg";
 import StarRatingComponent from 'react-star-rating-component';
 
 const result = (props) => {
-    console.log(props);
+
+    let pic = pic1
+
+    switch (props.id) {
+        case '1':
+            pic = pic1
+          break;
+        case '2':
+            pic = pic2;
+                break;
+        case '3':
+            pic = pic2;
+                break;
+    }
+    console.log(pic);
+    console.log("PIC ");
     return (
         <div className={props.classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <Paper className={props.classes.paper}>
-                        <img className={props.classes.logo} alt='icon' src={pic1} width={'50%'}/>
+                    <Paper className={props.classes.paperImg}>
+                        <img className={props.classes.logo} alt='icon' src={pic}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
                     <Paper className={props.classes.paper}>
                         <strong>
-                            Roast Chicken Legs with Thyme and Lemon
+                            {props.title}
                         </strong>
-                        <p>This quick-and-easy, simple-and-delicious roasted chicken with lemon and rosemary is perfect
-                            for a weeknight sheet pan dinner or when you have guests.</p>
+                        <p>{props.recipe}</p>
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
@@ -32,59 +46,6 @@ const result = (props) => {
                         <p>User rating:</p>
                         <StarRatingComponent
                             name={'rating1'}
-                            editing={true}/>
-                    </Paper>
-                </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <Paper className={props.classes.paper}>
-                        <img className={props.classes.logo} alt='icon' src={pic2} width={'50%'}/>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={props.classes.paper}>
-                        <strong>
-                            Chicken Curry Ramen
-                        </strong>
-                        <p>This tasteful chicken noodle soup with zesty Asian flair features chicken broth, soy sauce,
-                            garlic, ginger and colourful vegetables, and it’s ready in less than 30 minutes.</p>
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={props.classes.paper}>
-                        <strong>Recipe matching:</strong>
-                        <h1>85%</h1>
-                        <p>User rating:</p>
-                        <StarRatingComponent
-                            name={'rating2'}
-                            editing={true}/>
-                    </Paper>
-                </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <Paper className={props.classes.paper}>
-                        <img className={props.classes.logo} alt='icon' src={pic1} width={'50%'}/>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={props.classes.paper}>
-                        <strong>
-                            Chinese Fried Rice with Chicken and Vegetables
-                        </strong>
-                        <p>This is a staple of Thai cooking. Adjust species to your own tastes for a really great use
-                            for leftover rice! Thai basil has w different flavor than that of regular basil and makes
-                            all the different ini this recipe. It is fast and fairly dish, ideal for everyone. </p>
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={props.classes.paper}>
-                        <strong>Recipe matching:</strong>
-                        <h1>79%</h1>
-                        <p>User rating:</p>
-                        <StarRatingComponent
-                            name={'rating3'}
                             editing={true}/>
                     </Paper>
                 </Grid>
@@ -100,6 +61,15 @@ const stylesResult = makeStyles(theme => ({
     paper: {
         textAlign: 'center'
     },
+    logo: {
+        width: '50%'
+        // width: '100% !important',
+        // height: '100% !important'
+    },
+    paperImg: {
+        height: '40px !important',
+        width: '80px !important'
+    }
 }));
 
 export default withStyles(stylesResult)(result);
