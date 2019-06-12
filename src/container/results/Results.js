@@ -31,14 +31,15 @@ class Results extends Component {
 
         this.state = {
             selectedItems: JSON.parse(localStorage.getItem('SelectedItems')),
-            inputValue: JSON.parse(localStorage.getItem('InputValue'))
+            inputValue: localStorage.getItem('InputValue')
+
         }
     }
 
     getRecipes = (recipes) => {
-        const fullRecipe = recipes.filter(recipe => deburr(recipe.title) === deburr(this.state.inputValue))
+        const fullRecipe = this.state.inputValue ? recipes.filter(recipe => deburr(recipe.title) === deburr(JSON.parse(this.state.inputValue))) : []
 
-        if (fullRecipe) return fullRecipe;
+        if (fullRecipe.length > 0) return fullRecipe;
 
 
         const addedItems = this.state.selectedItems.filter(item => item.type === 'add').map(i => i.value);
@@ -62,8 +63,11 @@ class Results extends Component {
     }
 
     render() {
-        console.log('RESULT')
-        console.log(this.state.selectedItems)
+        console.log(this.state.inputValue)
+        console.log(this.state.inputValue)
+
+        // console.log('RESULT')
+        // console.log(this.state.selectedItems)
         return (
             <div >
                 <Toolbar isMainPage={false} />
