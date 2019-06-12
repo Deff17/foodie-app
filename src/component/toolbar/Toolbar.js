@@ -25,7 +25,7 @@ const toolbar = (props) => {
             </a>
             </div>
 
-            <Autocomplete className={props.classes['autocomplete' + type]} />
+            <Autocomplete className={props.classes['autocomplete' + type]} isResultsPage={!props.isMainPage} />
         </div>
     );
 }
@@ -55,7 +55,8 @@ const stylesToolbar = {
         marginRight: 'auto',            
     },
     buttons: {
-        float: 'right'
+        float: 'right',
+        fontFamily:"Comic Sans MS !important"
     },
     login: {
         background: 'white !important',
@@ -86,9 +87,11 @@ const stylesToolbar = {
     rootResults: {
         //textAlign: 'center',
         backgroundColor: '#FCEDAB ',
-        marginLeft: '-10px',
-        marginRight: '-10px',
-        marginTop: '-10px'
+        marginLeft: '-12px',
+        marginRight: '-12px',
+        marginTop: '-12px',
+        width: '100%',
+        height: '190px',
     },
     rootResultResults: {
         textAlign: 'left',
@@ -107,6 +110,7 @@ const stylesToolbar = {
         // left: '40% !important',
         // right: '40% !important',
         marginLeft: '20px',
+        float: 'left',
         // marginRight: '90',            
     },
     buttonsResults: {
@@ -140,6 +144,7 @@ const stylesToolbar = {
     autocompleteResults: {
         textAlign: 'center',
         width: '40%',
+        paddingTop: '50px',
     }
 }
 

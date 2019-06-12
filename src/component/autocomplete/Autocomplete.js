@@ -190,7 +190,7 @@ class Autocomplete extends Component {
         console.log(this.state.selectedItems)
         
         return (
-            <div className={this.props.classes.root}>
+            <div className={this.props.isResultsPage ? this.props.classes.rootResults : this.props.classes.root}>
                 <TextField
                     className={this.props.classes.textField}
                     variant='filled'
@@ -245,6 +245,11 @@ class Autocomplete extends Component {
 const stylesAutocomplete = {
     root: {
         textAlign: 'center'
+    },
+    rootResults: {
+        textAlign: 'center',
+        width: '100%',
+        paddingTop: '50px',
     },
     chipAdd: {
         backgroundColor: '#DCEDC1 !important'
