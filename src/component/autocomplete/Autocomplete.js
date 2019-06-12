@@ -251,7 +251,12 @@ class Autocomplete extends Component {
 
 const stylesAutocomplete = {
     root: {
-        textAlign: 'center'
+        textAlign: 'center',
+        position: "absolute",
+        top: '50%',
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%)',
+        width: '100%'
     },
     rootResults: {
         textAlign: 'center',
@@ -265,7 +270,7 @@ const stylesAutocomplete = {
         backgroundColor: '#FFAAA5 !important'
     },
     textField: {
-        width: '40%',
+        width: '45%',
         marginLeft: 'auto',
         marginRight: 'auto',
         paddingBottom: 0,
@@ -292,7 +297,6 @@ const stylesAutocomplete = {
     // },
 
     search: {
-        fontSize: 'large',
         background: 'white',
         borderTopRightRadius: '25px',
         borderBottomRightRadius: '25px',

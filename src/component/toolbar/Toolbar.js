@@ -57,7 +57,7 @@ const stylesToolbar = {
     },
     logo: {
         fontFamily: "Ink Free Regular",
-        fontSize: '6rem',
+        fontSize: '8rem',
         textShadow: '0px 2px 6px rgba(0,0,0,0.5)',
         color: 'white',
         margin: "50px 0 0 0"
