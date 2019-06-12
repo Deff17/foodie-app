@@ -25,6 +25,7 @@ const result = (props) => {
     console.log("PIC ");
     return (
         <div className={props.classes.root}>
+           <a href='/recipe' onClick={() => props.onResultClick(props.recipeObject)}>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
                     <Paper className={props.classes.paperImg}>
@@ -50,6 +51,7 @@ const result = (props) => {
                     </Paper>
                 </Grid>
             </Grid>
+            </a>
         </div>
     )
 };

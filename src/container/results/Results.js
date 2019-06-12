@@ -56,7 +56,9 @@ class Results extends Component {
     }
 
     onResultClicked = (recipe) => {
+        console.log(recipe)
         localStorage.setItem('ClickedItem', JSON.stringify(recipe));
+
     }
 
     render() {
@@ -68,12 +70,13 @@ class Results extends Component {
                 {
                     this.getRecipes(recipes).map(recipe => {
                         return (<Result
-                            onClick={() => this.onResultClicked(recipe)}
+                            onResultClick={this.onResultClicked}
                             key={recipe.title}
                             title={recipe.title}
                             recipe={recipe.recipe}
                             ingridients={recipe.ingridients}
                             id={recipe.id}
+                            recipeObject={recipe}
                         />)
                     })
                 }
