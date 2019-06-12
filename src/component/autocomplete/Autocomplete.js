@@ -253,7 +253,7 @@ const stylesAutocomplete = {
     root: {
         textAlign: 'center',
         position: "absolute",
-        top: '50%',
+        top: '40%',
         left: '50%',
         transform: 'translateX(-50%) translateY(-50%)',
         width: '100%'
