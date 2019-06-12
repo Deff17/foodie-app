@@ -17,7 +17,7 @@ const recipe = (props) => {
     return (
         <div>
             <div>
-                <Autocomplete isResultsPage={false}/>
+                <Autocomplete isResultsPage={true}/>
             </div>
             <div className={props.classes.colorBox}>
 
