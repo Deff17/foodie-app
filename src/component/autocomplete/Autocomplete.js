@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment} from "react";
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import deburr from 'lodash/deburr';
@@ -7,60 +7,58 @@ import Paper from '@material-ui/core/Paper';
 import SuggestionIngredient from './suggestion/Suggestion'
 import SearchIcon from '@material-ui/icons/Search';
 
-import styles from './Autocomplete.css'
-import { withStyles } from '@material-ui/styles';
-import { connect } from 'react-redux';
+import {withStyles} from '@material-ui/styles';
 
 const suggestionsItems = [
-    { label: 'Chicken' },
-    { label: 'Lemon' },
-    { label: 'Orange' },
-    { label: 'Pepper' },
-    { label: 'Rum' },
-    { label: 'Radish' },
-    { label: 'Salmon' },
-    { label: 'Sugar' },
-    { label: 'Backon' },
-    { label: 'Carrot' },
-    { label: 'Plum' },
-    { label: 'Turkey' },
-    { label: 'Apple' },
-    { label: 'Cucumber' },
-    { label: 'Lettuce' },
-    { label: 'Cheese' },
-    { label: 'Cream' },
-    { label: 'Milk' },
-    { label: 'Flour' },
-    { label: 'Sesame seeds' },
-    { label: 'Pasta' },
-    { label: 'Tomato' },
-    { label: 'Potato' },
-    { label: 'Paprika' },
-    { label: 'Pepper' },
-    { label: 'Cottage cheese' },
-    { label: 'Parmesan' },
-    { label: 'Egg' },
-    { label: 'Oil' },
-    { label: 'Onion' },
-    { label: 'Garlic' },
-    { label: 'Basil' },
-    { label: 'Zucchini' },
-    { label: 'Cabbage' },
-    { label: 'Broccoli' },
-    { label: 'Beef steak' },
+    {label: 'Chicken'},
+    {label: 'Lemon'},
+    {label: 'Orange'},
+    {label: 'Pepper'},
+    {label: 'Rum'},
+    {label: 'Radish'},
+    {label: 'Salmon'},
+    {label: 'Sugar'},
+    {label: 'Backon'},
+    {label: 'Carrot'},
+    {label: 'Plum'},
+    {label: 'Turkey'},
+    {label: 'Apple'},
+    {label: 'Cucumber'},
+    {label: 'Lettuce'},
+    {label: 'Cheese'},
+    {label: 'Cream'},
+    {label: 'Milk'},
+    {label: 'Flour'},
+    {label: 'Sesame seeds'},
+    {label: 'Pasta'},
+    {label: 'Tomato'},
+    {label: 'Potato'},
+    {label: 'Paprika'},
+    {label: 'Pepper'},
+    {label: 'Cottage cheese'},
+    {label: 'Parmesan'},
+    {label: 'Egg'},
+    {label: 'Oil'},
+    {label: 'Onion'},
+    {label: 'Garlic'},
+    {label: 'Basil'},
+    {label: 'Zucchini'},
+    {label: 'Cabbage'},
+    {label: 'Broccoli'},
+    {label: 'Beef steak'},
 ].map(suggestion => ({
     value: suggestion.label,
     label: suggestion.label,
 }));
 
 const suggestionsRecipes = [
-    { label: 'Chicken in tomato souce' },
-    { label: 'Lemon chicken' },
-    { label: 'Orange pie' },
-    { label: 'Cheesecake' },
-    { label: 'Spicy Salmon with Garlic Souce' },
-    { label: 'Spicy Chicken' },
-    { label: 'Roast Chicken Legs with Thyme and Lemon' }
+    {label: 'Chicken in tomato souce'},
+    {label: 'Lemon chicken'},
+    {label: 'Orange pie'},
+    {label: 'Cheesecake'},
+    {label: 'Spicy Salmon with Garlic Souce'},
+    {label: 'Spicy Chicken'},
+    {label: 'Roast Chicken Legs with Thyme and Lemon'}
 ].map(suggestion => ({
     value: suggestion.label,
     label: suggestion.label,
@@ -107,10 +105,10 @@ class Autocomplete extends Component {
     }
 
     handleKeyDown = event => {
-        const { inputValue, selectedItems } = { ...this.state };
+        const {inputValue, selectedItems} = {...this.state};
         if (selectedItems.length && !inputValue.length && event.key === 'Backspace') {
             selectedItems.splice(selectedItems.length - 1, 1);
-            this.setState({ selectedItems });
+            this.setState({selectedItems});
             localStorage.setItem('SelectedItems', JSON.stringify(selectedItems));
             window.selectedItems = selectedItems
 
@@ -120,12 +118,12 @@ class Autocomplete extends Component {
             if (this.state.activeItem === 0)
                 return;
 
-            this.setState({ activeItem: this.state.activeItem - 1 })
+            this.setState({activeItem: this.state.activeItem - 1})
 
         } else if (event.keyCode === 40) {
             if (this.state.activeItem - 1 === this.state.filteredItems.length)
                 return;
-            this.setState({ activeItem: this.state.activeItem + 1 })
+            this.setState({activeItem: this.state.activeItem + 1})
         }
 
     }
@@ -134,7 +132,12 @@ class Autocomplete extends Component {
         const newFilteredItems = this.getSuggestions(event.target.value, suggestionsItems)
         const newFilteredRecipes = this.getSuggestions(event.target.value, suggestionsRecipes)
         const isAnyItemToShow = newFilteredItems.length !== 0 || newFilteredRecipes.length !== 0
-        this.setState({ inputValue: event.target.value, filteredItems: newFilteredItems, filteredRecipes: newFilteredRecipes, isOpen: isAnyItemToShow });
+        this.setState({
+            inputValue: event.target.value,
+            filteredItems: newFilteredItems,
+            filteredRecipes: newFilteredRecipes,
+            isOpen: isAnyItemToShow
+        });
     }
 
     handleClickItem = (item, type) => {
@@ -143,7 +146,7 @@ class Autocomplete extends Component {
         if (newSelectedItems.indexOf(item) === -1) {
             newSelectedItems = [...newSelectedItems, item];
         }
-        this.setState({ inputValue: '', selectedItems: newSelectedItems, isOpen: false });
+        this.setState({inputValue: '', selectedItems: newSelectedItems, isOpen: false});
         this.textInput.current.focus();
         localStorage.setItem('SelectedItems', JSON.stringify(newSelectedItems));
         window.selectedItems = newSelectedItems
@@ -154,7 +157,7 @@ class Autocomplete extends Component {
     }
 
     handleClickRecipe = item => {
-        this.setState({ inputValue: item.value, selectedItems: [], isOpen: false });
+        this.setState({inputValue: item.value, selectedItems: [], isOpen: false});
         this.textInput.current.focus();
         localStorage.setItem('SelectedItems', JSON.stringify([]));
         window.selectedItems = []
@@ -164,12 +167,12 @@ class Autocomplete extends Component {
     handleDelete = item => {
         const newSelectedItems = [...this.state.selectedItems];
         newSelectedItems.splice(newSelectedItems.indexOf(item), 1);
-        this.setState({ selectedItems: newSelectedItems });
+        this.setState({selectedItems: newSelectedItems});
         localStorage.setItem('SelectedItems', JSON.stringify(newSelectedItems));
         window.selectedItems = newSelectedItems
     }
 
-    getSuggestions = (value, suggestionsList, { showEmpty = false } = {}) => {
+    getSuggestions = (value, suggestionsList, {showEmpty = false} = {}) => {
         const inputValue = deburr(value.trim()).toLowerCase();
         const inputLength = inputValue.length;
         let count = 0;
@@ -208,37 +211,36 @@ class Autocomplete extends Component {
                     inputRef={this.textInput}
                 >
 
-                </TextField >
+                </TextField>
 
-                <a href='/results' ><SearchIcon className={this.props.classes.search} /></a>
+                <a href='/results' className={this.props.classes.aTagSearch}>
+                    <SearchIcon className={this.props.classes.search}/>
+                </a>
 
                 {this.state.isOpen ? <Paper square className={this.props.classes.paper}>
                     {<div>
-                        <div>{
+                        <div className={this.props.classes.ingredientItems}>{
                             this.state.filteredItems.map((suggestion, index) =>
-                                (
-
-                                    <SuggestionIngredient
-                                        key={suggestion.value}
-                                        suggestion={suggestion}
-                                        handleClick={this.handleClickItem}
-                                    />
-                                )
+                                <SuggestionIngredient
+                                    key={suggestion.value}
+                                    suggestion={suggestion}
+                                    handleClick={this.handleClickItem}
+                                />
                             )
                         }
                         </div>
-                        <hr />
-                        <div>
-                            {
-                                this.state.filteredRecipes.map(suggestion => (
-                                    <MenuItem
-                                        key={suggestion.value}
-                                        onClick={() => this.handleClickRecipe(suggestion)}
-                                    >
-                                        {suggestion.value}
-                                    </MenuItem>
-                                ))
-                            }
+                        <hr/>
+                        <div className={this.props.classes.mealItems}>{
+                            this.state.filteredRecipes.map(suggestion => (
+                                <MenuItem
+                                    className={this.props.classes.singleMeal}
+                                    key={suggestion.value}
+                                    onClick={() => this.handleClickRecipe(suggestion)}
+                                >
+                                    {suggestion.value}
+                                </MenuItem>
+                            ))
+                        }
                         </div>
                     </div>
                     }
@@ -279,20 +281,17 @@ const stylesAutocomplete = {
         borderBottomLeftRadius: '25px',
     },
     input: {
-        background: 'none !important'
+        background: 'none !important',
+        '& input': {
+            padding: '19px 15px 18px 15px'
+        }
     },
     paper: {
-        width: '40%',
+        width: '45%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: 10,
-        borderRadius: '10px',
+        borderRadius: '25px',
     },
-
-    // anchor: {
-    //     marginLeft: '95%',
-    // },
-
     search: {
         background: 'white',
         borderTopRightRadius: '25px',
@@ -300,27 +299,34 @@ const stylesAutocomplete = {
         padding: '10px',
         marginLeft: '0',
         fontSize: '36px !important',
-        color: '#CACACA'
+        color: '#CACACA',
+        '&:hover': {
+            color: '#b9b9b9'
+        }
+    },
+    aTagSearch: {
+        width: 0,
+        height: 0
+    },
+    ingredientItems: {
+        '& li:first-child:hover': {
+            borderRadius: '25px 25px 0 0',
+        },
+        '& li:first-child:focus': {
+            borderRadius: '25px 25px 0 0',
+        },
+    },
+    mealItems: {
+        '& li:last-child:hover': {
+            borderRadius: '0 0 25px 25px',
+        },
+        '& li:last-child:focus': {
+            borderRadius: '0 0 25px 25px',
+        },
+    },
+    singleMeal: {
+        transition: 'none !important'
     }
-
-}
-
-//'#DCEDC1' : '#FFAAA5'
-
-// const mapStateToProps = state => {
-//     return {
-//         selectedItems: state.selectedItems,
-//         inputValue: state.inputValue
-//     }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onSearchClikced: (selectedItems, inputValue) => dispatch({type: 'SEARCH', selectedItems, inputValue})
-//     }
-// }
-
-
-// export default connect(mapStateToProps, mapDispatchToProps)(withStyles(stylesAutocomplete)(Autocomplete));
+};
 export default withStyles(stylesAutocomplete)(Autocomplete);
 
