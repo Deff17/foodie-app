@@ -85,6 +85,10 @@ const stylesToolbar = {
         width: 120,
         padding: '0 30px',
         margin: '2px !important',
+        '&:hover': {
+            border: '1px solid #FFBA00 !important',
+            color: '#FFBA00 !important',
+        }
     },
     register: {
         fontFamily: 'Roboto, sans-serif',
@@ -97,14 +101,20 @@ const stylesToolbar = {
         width: 120,
         padding: '0 30px',
         margin: '2px !important',
+        '&:hover': {
+            border: '1px solid #FFBA00 !important',
+            color: '#FFBA00 !important',
+        }
     },
     favoriteBorder: {
-
         color: 'white !important',
         padding: '8px !important',
         border: '0 !important',
         '&:hover': {
             backgroundColor: 'transparent !important'
+        },
+        '& span a svg:hover': {
+            fill: '#FFBA00 !important'
         }
 
     },
@@ -153,7 +163,7 @@ const stylesToolbar = {
         height: 48,
         width: 90,
         padding: '0 30px',
-        margin: '2px !important'
+        margin: '2px !important',
     },
     registerResults: {
         background: 'white !important',
