@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Toolbar from '../../component/toolbar/Toolbar';
 import Result from '../../component/result/Result';
-import Route from 'react-router-dom';
-import classes from './Results.css';
 import deburr from 'lodash/deburr';
 
 const recipes = [{
@@ -22,7 +20,7 @@ const recipes = [{
     recipe: 'This is a staple of Thai cooking. Adjust species to your own tastes for a really great use for leftover rice! Thai basil has w different flavor than that of regular basil and makes all the different ini this recipe. It is fast and fairly dish, ideal for everyone.',
     id: '3'
 }
-]
+];
 
 class Results extends Component {
 
@@ -37,34 +35,32 @@ class Results extends Component {
     }
 
     getRecipes = (recipes) => {
-        const fullRecipe = this.state.inputValue ? recipes.filter(recipe => deburr(recipe.title) === deburr(JSON.parse(this.state.inputValue))) : []
+        const fullRecipe = this.state.inputValue ? recipes.filter(recipe => deburr(recipe.title) === deburr(JSON.parse(this.state.inputValue))) : [];
 
         if (fullRecipe.length > 0) return fullRecipe;
 
-
         const addedItems = this.state.selectedItems.filter(item => item.type === 'add').map(i => i.value);
         const removedItems = this.state.selectedItems.filter(item => item.type === 'remove').map(i => i.value);
-        console.log(removedItems)
+        console.log(removedItems);
         const properRecipes = recipes.filter(recipe => {
             //let keep = false;
 
-            const foundAdded = recipe.ingridients.some(r => addedItems.includes(r))
-            const foundeRemoved = recipe.ingridients.some(r => removedItems.includes(r))
+            const foundAdded = recipe.ingridients.some(r => addedItems.includes(r));
+            const foundeRemoved = recipe.ingridients.some(r => removedItems.includes(r));
             return foundAdded && !foundeRemoved
-        })
+        });
         return properRecipes;
 
-    }
+    };
 
     onResultClicked = (recipe) => {
-        console.log(recipe)
+        console.log(recipe);
         localStorage.setItem('ClickedItem', JSON.stringify(recipe));
-
-    }
+    };
 
     render() {
-        console.log(this.state.inputValue)
-        console.log(this.state.inputValue)
+        console.log(this.state.inputValue);
+        console.log(this.state.inputValue);
 
         // console.log('RESULT')
         // console.log(this.state.selectedItems)
