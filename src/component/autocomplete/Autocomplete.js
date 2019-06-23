@@ -68,11 +68,6 @@ class Autocomplete extends Component {
 
     constructor(props) {
         super(props);
-
-        console.log('Window')
-        console.log(window.selectedItems)
-        console.log(localStorage.getItem('SelectedItems'))
-
         this.state = {
             selectedItems: JSON.parse(localStorage.getItem('SelectedItems')) || [], //[], //localStorage.getItem('SelectedItems') || [],
             inputValue: localStorage.getItem('InputValue') || '',//'', //localStorage.getItem('InputValue') || '',
@@ -81,16 +76,8 @@ class Autocomplete extends Component {
             activeItem: 0,
             isOpen: false,
         };
-
-        //this.setState({selectedItems: this.props.selectedItems, inputValue: this.props.inputValue})
-
         this.textInput = React.createRef();
     }
-
-    // static getDerivedStateFromProps(props, state) {
-    //     return {...state, selectedItems: props.selectedItems, inputValue: props.inputValue}
-    // }
-
 
     getChipItem = item => {
         const style = item.type === 'add' ? this.props.classes.chipAdd : this.props.classes.chipRemove;
@@ -102,7 +89,7 @@ class Autocomplete extends Component {
                 onDelete={this.handleDelete}
             />
         )
-    }
+    };
 
     handleKeyDown = event => {
         const {inputValue, selectedItems} = {...this.state};
@@ -113,7 +100,6 @@ class Autocomplete extends Component {
             window.selectedItems = selectedItems
 
         }
-
         if (event.keyCode === 38) {
             if (this.state.activeItem === 0)
                 return;
@@ -125,8 +111,7 @@ class Autocomplete extends Component {
                 return;
             this.setState({activeItem: this.state.activeItem + 1})
         }
-
-    }
+    };
 
     handleInputChange = event => {
         const newFilteredItems = this.getSuggestions(event.target.value, suggestionsItems)
@@ -138,7 +123,7 @@ class Autocomplete extends Component {
             filteredRecipes: newFilteredRecipes,
             isOpen: isAnyItemToShow
         });
-    }
+    };
 
     handleClickItem = (item, type) => {
         let newSelectedItems = [...this.state.selectedItems];
@@ -151,10 +136,7 @@ class Autocomplete extends Component {
         localStorage.setItem('SelectedItems', JSON.stringify(newSelectedItems));
         window.selectedItems = newSelectedItems
         localStorage.setItem('InputValue', '');
-
-        console.log('Window')
-        console.log(window.selectedItems)
-    }
+    };
 
     handleClickRecipe = item => {
         this.setState({inputValue: item.value, selectedItems: [], isOpen: false});
@@ -162,7 +144,7 @@ class Autocomplete extends Component {
         localStorage.setItem('SelectedItems', JSON.stringify([]));
         window.selectedItems = []
         localStorage.setItem('InputValue', JSON.stringify(item.value));
-    }
+    };
 
     handleDelete = item => {
         const newSelectedItems = [...this.state.selectedItems];
@@ -170,7 +152,7 @@ class Autocomplete extends Component {
         this.setState({selectedItems: newSelectedItems});
         localStorage.setItem('SelectedItems', JSON.stringify(newSelectedItems));
         window.selectedItems = newSelectedItems
-    }
+    };
 
     getSuggestions = (value, suggestionsList, {showEmpty = false} = {}) => {
         const inputValue = deburr(value.trim()).toLowerCase();
@@ -189,12 +171,9 @@ class Autocomplete extends Component {
 
                 return keep;
             });
-    }
+    };
 
     render() {
-
-        console.log(this.state.selectedItems)
-
         return (
             <div className={this.props.isResultsPage ? this.props.classes.rootResults : this.props.classes.root}>
                 <TextField
@@ -203,7 +182,7 @@ class Autocomplete extends Component {
                     InputProps={{
                         className: this.props.classes.input,
                         disableUnderline: true,
-                        startAdornment: this.state.selectedItems.map(item => this.getChipItem(item))//, this.getChipFromInput(this.state.inputValue)] 
+                        startAdornment: this.state.selectedItems.map(item => this.getChipItem(item))//, this.getChipFromInput(this.state.inputValue)]
                     }}
                     onKeyDown={this.handleKeyDown}
                     onChange={this.handleInputChange}
@@ -254,12 +233,13 @@ class Autocomplete extends Component {
 const stylesAutocomplete = {
     root: {
         textAlign: 'center',
-        width: '100%'
+        width: '100%',
     },
     rootResults: {
         textAlign: 'center',
         width: '100%',
-        paddingTop: '50px',
+        top: '30px',
+        position: 'absolute'
     },
     chipAdd: {
         backgroundColor: '#DCEDC1 !important'
@@ -287,7 +267,7 @@ const stylesAutocomplete = {
         }
     },
     paper: {
-        width: '45%',
+        width: '43%',
         marginLeft: 'auto',
         marginRight: 'auto',
         borderRadius: '25px',
@@ -302,7 +282,7 @@ const stylesAutocomplete = {
         color: '#CACACA',
         '&:hover': {
             color: '#b9b9b9'
-        }
+        },
     },
     aTagSearch: {
         width: 0,
