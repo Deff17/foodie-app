@@ -7,29 +7,44 @@ import {withStyles} from '@material-ui/styles';
 
 
 const toolbar = (props) => {
-
-    const type = props.isMainPage ? '' : 'Results';
-
+    if (props.isMainPage) {
+        return (
+            <div className={props.classes.root}>
+                <div className={props.classes.buttons}>
+                    <a href='/'>
+                        <IconButton className={props.classes.favoriteBorder}>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                            <a><FavoriteBorder className={props.classes.heart}/></a>
+                        </IconButton>
+                        <Button className={props.classes.login}><a href='/login'>Sign in</a> </Button>
+                        <Button className={props.classes.register}><a href='/register'>Sign up</a> </Button>
+                    </a>
+                </div>
+                <div className={props.classes.logoBox}>
+                    <h1 className={props.classes.logo}><a href='/'>Foodie</a></h1>
+                    <h1 className={props.classes.underLogo}>find your perfect recipe</h1>
+                </div>
+                <Autocomplete isResultsPage={!props.isMainPage}/>
+            </div>
+        );
+    }
     return (
-        <div className={props.classes['root' + type]}>
-            <div className={props.classes['buttons' + type]}>
+        <div className={props.classes.rootResults}>
+            <h1 className={props.classes.logoResults}><a href='/'>Foodie</a></h1>
+            <Autocomplete isResultsPage={!props.isMainPage}/>
+            <div className={props.classes.buttonsResults}>
                 <a href='/'>
-                    <IconButton className={props.classes['favoriteBorder' + type]}>
+                    <IconButton className={props.classes.favoriteBorder}>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a><FavoriteBorder className={props.classes['heart' + type]}/></a>
+                        <a><FavoriteBorder className={props.classes.heart}/></a>
                     </IconButton>
-                    <Button className={props.classes['login' + type]}><a href='/login'>Sign in</a> </Button>
-                    <Button className={props.classes['register' + type]}><a href='/register'>Sign up</a> </Button>
+                    <Button className={props.classes.login}><a href='/login'>Sign in</a> </Button>
+                    <Button className={props.classes.register}><a href='/register'>Sign up</a> </Button>
                 </a>
             </div>
-            <div className={props.classes['logoBox' + type]}>
-                <h1 className={props.classes['logo' + type]}><a href='/'>Foodie</a></h1>
-                <h1 className={props.classes['underLogo' + type]}>find your perfect recipe</h1>
-            </div>
-            <Autocomplete className={props.classes['autocomplete' + type]} isResultsPage={!props.isMainPage}/>
         </div>
     );
-}
+};
 
 
 const stylesToolbar = {
@@ -37,14 +52,6 @@ const stylesToolbar = {
         display: 'flex',
         textAlign: 'center',
         flexDirection: 'column'
-    },
-    rootResult: {
-        textAlign: 'left',
-        background: 'red',
-        flexDirection: 'column'
-    },
-    textFiledRoot: {
-        backgroundColor: 'FFFFFF'
     },
     chipAdd: {
         backgroundColor: '#DCEDC1'
@@ -60,9 +67,9 @@ const stylesToolbar = {
         fontSize: '7rem',
         textShadow: '0px 2px 6px rgba(0,0,0,0.5)',
         color: 'white',
-        margin: "50px 0 0 0"
+        margin: "150px 0 0 0"
     },
-    underLogo : {
+    underLogo: {
         fontFamily: "Ink Free Regular",
         color: 'rgba(255,255,255,0.9)',
         margin: "0 0 50px 0"
@@ -124,68 +131,33 @@ const stylesToolbar = {
     },
 ///////////////////////////// 
     rootResults: {
-        //textAlign: 'center',
         backgroundColor: '#FCEDAB ',
-        marginLeft: '-12px',
-        marginRight: '-12px',
-        marginTop: '-12px',
-        width: '100%',
-        height: '190px',
-    },
-    rootResultResults: {
-        textAlign: 'left',
-        background: 'red'
-    },
-    textFiledRootResults: {
-        backgroundColor: 'FFFFFF'
-    },
-    chipAddResults: {
-        backgroundColor: '#DCEDC1'
-    },
-    chipRemoveResults: {
-        backgroundColor: '#FFAAA5'
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        boxShadow: '0 4px 5px -2px rgba(0,0,0,0.2)',
     },
     logoResults: {
-        // left: '40% !important',
-        // right: '40% !important',
-        marginLeft: '20px',
+        marginLeft: '50px',
+        marginTop: '20px',
+        marginBottom: '20px',
         float: 'left',
-        // marginRight: '90',            
+        fontFamily: "Ink Free Regular",
+        fontSize: '4rem',
+        textShadow: '0px 2px 6px rgba(0,0,0,0.5)',
+        color: 'white',
+        zIndex: 5
     },
     buttonsResults: {
-        float: 'right'
-    },
-    loginResults: {
-        background: 'white !important',
-        borderRadius: '25px !important',
-        border: 0,
-        color: 'black !important',
-        height: 48,
-        width: 90,
-        padding: '0 30px',
-        margin: '2px !important',
-    },
-    registerResults: {
-        background: 'white !important',
-        borderRadius: '25px !important',
-        border: 0,
-        color: 'black !important',
-        height: 48,
-        width: 90,
-        padding: '0 30px',
-        margin: '2px !important'
-    },
-    favoriteBorderResults: {
-        color: 'white !important',
-        fontSize: '25px',
-        marginRight: '50px !important',
-    },
-    autocompleteResults: {
-        textAlign: 'center',
-        width: '40%',
-        paddingTop: '50px',
+        marginLeft: 'auto',
+        marginRight: '30px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginTop: '30px !important',
+
     }
-}
+};
 
 
 export default withStyles(stylesToolbar)(toolbar); 
