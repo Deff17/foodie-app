@@ -6,6 +6,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import SuggestionIngredient from './suggestion/Suggestion'
 import SearchIcon from '@material-ui/icons/Search';
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import {withStyles} from '@material-ui/styles';
 
@@ -75,6 +82,7 @@ class Autocomplete extends Component {
             filteredRecipes: [],
             activeItem: 0,
             isOpen: false,
+            isModelOpen: false
         };
         this.textInput = React.createRef();
     }
@@ -173,29 +181,41 @@ class Autocomplete extends Component {
             });
     };
 
+    handleModalOpen = () => {
+        this.setState({isModalOpen: true})
+    };
+
+    handleModalClose = () => {
+        this.setState({isModalOpen: false})
+    };
+
     render() {
         return (
             <div className={this.props.isResultsPage ? this.props.classes.rootResults : this.props.classes.root}>
-                <TextField
-                    className={this.props.classes.textField}
-                    variant='filled'
-                    InputProps={{
-                        className: this.props.classes.input,
-                        disableUnderline: true,
-                        startAdornment: this.state.selectedItems.map(item => this.getChipItem(item))//, this.getChipFromInput(this.state.inputValue)]
-                    }}
-                    onKeyDown={this.handleKeyDown}
-                    onChange={this.handleInputChange}
-                    value={this.state.inputValue}
-                    inputRef={this.textInput}
-                >
-
-                </TextField>
-
-                <a href='/results' className={this.props.classes.aTagSearch}>
-                    <SearchIcon className={this.props.classes.search}/>
-                </a>
-
+                <div className={this.props.classes.searchBar}>
+                    <div className={this.props.classes.advanceSearch}>
+                        <button className={this.props.classes.advanceSearchButton} onClick={this.handleModalOpen}>
+                            Advance search
+                        </button>
+                    </div>
+                    <TextField
+                        className={this.props.classes.textField}
+                        variant='filled'
+                        InputProps={{
+                            className: this.props.classes.input,
+                            disableUnderline: true,
+                            startAdornment: this.state.selectedItems.map(item => this.getChipItem(item))//, this.getChipFromInput(this.state.inputValue)]
+                        }}
+                        onKeyDown={this.handleKeyDown}
+                        onChange={this.handleInputChange}
+                        value={this.state.inputValue}
+                        inputRef={this.textInput}
+                    >
+                    </TextField>
+                    <a href='/results' className={this.props.classes.aTagSearch}>
+                        <SearchIcon className={this.props.classes.search}/>
+                    </a>
+                </div>
                 {this.state.isOpen ? <Paper square className={this.props.classes.paper}>
                     {<div>
                         <div className={this.props.classes.ingredientItems}>{
@@ -224,34 +244,78 @@ class Autocomplete extends Component {
                     </div>
                     }
                 </Paper> : null}
+                {/*    ************* Moda************  */}
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.isModalOpen}
+                    onClose={this.handleModalClose}
+                >
+                    <div className={this.props.classes.modal}>
+                        <Typography variant="h5">Advance foodie search</Typography>
+                        <Typography variant="subtitle1">Adjust search result using below options</Typography>
+                        <Typography>Option nr 1</Typography>
+                        <Typography>Option nr 2</Typography>
+                        <Typography>Option nr 3</Typography>
+                        <FormGroup column>
+                            <FormControlLabel control={<Checkbox value="checkedB" color="primary"/>} label="Primary"/>
+                            <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
+                            <FormControlLabel control={<Checkbox value="checkedD" />} label="Test" />
+                        </FormGroup>
+                    </div>
+                </Modal>
             </div>
-        )
+    )
     }
 
-}
+    }
 
-const stylesAutocomplete = {
-    root: {
+    const stylesAutocomplete = {
+        root: {
         textAlign: 'center',
         width: '100%',
     },
-    rootResults: {
+        rootResults: {
         textAlign: 'center',
         width: '100%',
-        top: '30px',
+        top: '15px',
         position: 'absolute'
     },
-    chipAdd: {
-        backgroundColor: '#DCEDC1 !important'
-    },
-    chipRemove: {
-        backgroundColor: '#FFAAA5 !important'
-    },
-    textField: {
-        width: '40%',
-        minWidth: "20%",
+        searchBar: {
+        width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
+    },
+        advanceSearch: {
+        marginRight: 'calc(60% / 2)',
+        marginLeft: 'auto',
+        width: '150px',
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderTopRightRadius: '50px',
+        borderTopLeftRadius: '50px',
+    },
+        advanceSearchButton: {
+        color: '#848484',
+        fontFamily: 'Roboto, sans-serif',
+        fontWeight: '800 !important',
+        fontSize: '0.85em',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        outline: 'none !important',
+        '&:hover': {
+        color: '#575757',
+    }
+    },
+        chipAdd: {
+        backgroundColor: '#DCEDC1 !important'
+    },
+        chipRemove: {
+        backgroundColor: '#FFAAA5 !important'
+    },
+        textField: {
+        width: '40%',
+        minWidth: "20%",
         paddingBottom: 0,
         marginTop: 0,
         fontWeight: 500,
@@ -260,19 +324,19 @@ const stylesAutocomplete = {
         borderTopLeftRadius: '25px',
         borderBottomLeftRadius: '25px',
     },
-    input: {
+        input: {
         background: 'none !important',
         '& input': {
-            padding: '19px 15px 18px 15px'
-        }
+        padding: '19px 15px 18px 15px'
+    }
     },
-    paper: {
+        paper: {
         width: '43%',
         marginLeft: 'auto',
         marginRight: 'auto',
         borderRadius: '25px',
     },
-    search: {
+        search: {
         background: 'white',
         borderTopRightRadius: '25px',
         borderBottomRightRadius: '25px',
@@ -281,32 +345,45 @@ const stylesAutocomplete = {
         fontSize: '36px !important',
         color: '#CACACA',
         '&:hover': {
-            color: '#b9b9b9'
-        },
+        color: '#b9b9b9'
     },
-    aTagSearch: {
+    },
+        aTagSearch: {
         width: 0,
         height: 0
     },
-    ingredientItems: {
+        ingredientItems: {
         '& li:first-child:hover': {
-            borderRadius: '25px 25px 0 0',
-        },
+        borderRadius: '25px 25px 0 0',
+    },
         '& li:first-child:focus': {
-            borderRadius: '25px 25px 0 0',
-        },
+        borderRadius: '25px 25px 0 0',
     },
-    mealItems: {
+    },
+        mealItems: {
         '& li:last-child:hover': {
-            borderRadius: '0 0 25px 25px',
-        },
-        '& li:last-child:focus': {
-            borderRadius: '0 0 25px 25px',
-        },
+        borderRadius: '0 0 25px 25px',
     },
-    singleMeal: {
+        '& li:last-child:focus': {
+        borderRadius: '0 0 25px 25px',
+    },
+    },
+        singleMeal: {
         transition: 'none !important'
+    },
+        modal: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: "rgba(255,255,255,0.8)",
+        boxShadow: '0 4px 5px rgba(0,0,0,0.3)',
+        outline: 'none',
+        top: '50%',
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%)',
+        textAlign: 'center',
+        fontFamily: 'Roboto, sans-serif',
+            borderRadius: '15px 15px 15px 15px'
     }
-};
-export default withStyles(stylesAutocomplete)(Autocomplete);
+    };
+    export default withStyles(stylesAutocomplete)(Autocomplete);
 
