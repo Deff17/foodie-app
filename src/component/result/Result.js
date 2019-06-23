@@ -90,7 +90,7 @@ const result = (props) => {
                           style={{textAlign: "center", backgroundColor: "#fff2cc", borderRadius: "0 30px 30px 0 "}}>
                         <br/>
                         <strong>Recipe matching:</strong>
-                        <h1 style={{fontWeight: "900"}}>92%</h1>
+                        <h1 style={{fontWeight: "900"}}>{props.matching}</h1>
                         <p>User score:</p>
                         <StarRatingComponent
                             name={Math.random()}

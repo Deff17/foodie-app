@@ -1,24 +1,27 @@
-import React, {Component} from 'react';
-import Toolbar from '../../component/toolbar/Toolbar';
-import Result from '../../component/result/Result';
 import deburr from 'lodash/deburr';
+import React, {Component} from 'react';
+import Result from '../../component/result/Result';
+import Toolbar from '../../component/toolbar/Toolbar';
 
 const recipes = [{
     ingridients: ['Chicken', 'Lemon', 'Parsley'],
     title: "Roast Chicken Legs with Thyme and Lemon",
     recipe: 'This quick-and-easy, simple-and-delicious roasted chicken with lemon and rosemary is perfect for a weeknight sheet pan dinner or when you have guests.',
-    id: '1'
+    id: '1',
+    matching: '92%'
 }, {
     ingridients: ['Wheat Ramen Noodles', 'Jalapeno Chilli', 'Lime', 'Chicken', 'Curry'],
     title: 'Chicken Curry Ramen',
     recipe: 'This tasteful chicken noodle soup with zesty Asian flair features chicken broth, soy sauce, garlic, ginger and colourful vegetables, and it’s ready in less than 30 minutes.',
-    id: '2'
+    id: '2',
+    matching: '85%'
 },
 {
     ingridients: ['Chicken', 'Lemon', 'Tomato', 'Garlic'],
     title: 'Chinese Fried Rice with Chicken and Vegetables',
     recipe: 'This is a staple of Thai cooking. Adjust species to your own tastes for a really great use for leftover rice! Thai basil has w different flavor than that of regular basil and makes all the different ini this recipe. It is fast and fairly dish, ideal for everyone.',
-    id: '3'
+    id: '3',
+    matching: '79%'
 }
 ];
 
@@ -76,6 +79,7 @@ class Results extends Component {
                             recipe={recipe.recipe}
                             ingridients={recipe.ingridients}
                             id={recipe.id}
+                            matching={recipe.matching}
                             recipeObject={recipe}
                         />)
                     })
