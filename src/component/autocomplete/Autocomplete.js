@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import deburr from 'lodash/deburr';
@@ -11,8 +11,6 @@ import Modal from '@material-ui/core/Modal';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import {withStyles} from '@material-ui/styles';
 
@@ -254,39 +252,73 @@ class Autocomplete extends Component {
                     <div className={this.props.classes.modal}>
                         <Typography variant="h5">Advance foodie search</Typography>
                         <Typography variant="subtitle1">Adjust search result using below options</Typography>
-                        <Typography>Option nr 1</Typography>
-                        <Typography>Option nr 2</Typography>
-                        <Typography>Option nr 3</Typography>
                         <FormGroup column>
-                            <FormControlLabel control={<Checkbox value="checkedB" color="primary"/>} label="Primary"/>
-                            <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
-                            <FormControlLabel control={<Checkbox value="checkedD" />} label="Test" />
+                            <FormControlLabel control={<Checkbox value="checkedB" color="green"/>} label="Vegan"/>
+                            <FormControlLabel control={<Checkbox value="checkedC"/>} label="Gluten-free"/>
+                            <FormControlLabel control={<Checkbox value="checkedD"/>} label="Low Sugar"/>
                         </FormGroup>
+                        <TextField
+                            id="outlined-number"
+                            label="Number of Ingredients"
+                            type="number"
+                            className={this.props.classes.number}
+                            placeholder={"ingredients"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-number"
+                            label="Calories"
+                            type="number"
+                            placeholder={"kcal"}
+                            className={this.props.classes.number2}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-number"
+                            label="Portion Size"
+                            type="number"
+                            className={this.props.classes.number3}
+                            placeholder={"people"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="normal"
+                            variant="outlined"
+                        />
+
                     </div>
                 </Modal>
             </div>
-    )
+        )
     }
 
-    }
+}
 
-    const stylesAutocomplete = {
-        root: {
+const stylesAutocomplete = {
+    root: {
         textAlign: 'center',
         width: '100%',
     },
-        rootResults: {
+    rootResults: {
         textAlign: 'center',
         width: '100%',
         top: '15px',
         position: 'absolute'
     },
-        searchBar: {
+    searchBar: {
         width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-        advanceSearch: {
+    advanceSearch: {
         marginRight: 'calc(60% / 2)',
         marginLeft: 'auto',
         width: '150px',
@@ -294,7 +326,7 @@ class Autocomplete extends Component {
         borderTopRightRadius: '50px',
         borderTopLeftRadius: '50px',
     },
-        advanceSearchButton: {
+    advanceSearchButton: {
         color: '#848484',
         fontFamily: 'Roboto, sans-serif',
         fontWeight: '800 !important',
@@ -304,16 +336,16 @@ class Autocomplete extends Component {
         cursor: 'pointer',
         outline: 'none !important',
         '&:hover': {
-        color: '#575757',
-    }
+            color: '#575757',
+        }
     },
-        chipAdd: {
+    chipAdd: {
         backgroundColor: '#DCEDC1 !important'
     },
-        chipRemove: {
+    chipRemove: {
         backgroundColor: '#FFAAA5 !important'
     },
-        textField: {
+    textField: {
         width: '40%',
         minWidth: "20%",
         paddingBottom: 0,
@@ -324,19 +356,19 @@ class Autocomplete extends Component {
         borderTopLeftRadius: '25px',
         borderBottomLeftRadius: '25px',
     },
-        input: {
+    input: {
         background: 'none !important',
         '& input': {
-        padding: '19px 15px 18px 15px'
-    }
+            padding: '19px 15px 18px 15px'
+        }
     },
-        paper: {
+    paper: {
         width: '43%',
         marginLeft: 'auto',
         marginRight: 'auto',
         borderRadius: '25px',
     },
-        search: {
+    search: {
         background: 'white',
         borderTopRightRadius: '25px',
         borderBottomRightRadius: '25px',
@@ -345,36 +377,36 @@ class Autocomplete extends Component {
         fontSize: '36px !important',
         color: '#CACACA',
         '&:hover': {
-        color: '#b9b9b9'
+            color: '#b9b9b9'
+        },
     },
-    },
-        aTagSearch: {
+    aTagSearch: {
         width: 0,
         height: 0
     },
-        ingredientItems: {
+    ingredientItems: {
         '& li:first-child:hover': {
-        borderRadius: '25px 25px 0 0',
-    },
+            borderRadius: '25px 25px 0 0',
+        },
         '& li:first-child:focus': {
-        borderRadius: '25px 25px 0 0',
+            borderRadius: '25px 25px 0 0',
+        },
     },
-    },
-        mealItems: {
+    mealItems: {
         '& li:last-child:hover': {
-        borderRadius: '0 0 25px 25px',
-    },
+            borderRadius: '0 0 25px 25px',
+        },
         '& li:last-child:focus': {
-        borderRadius: '0 0 25px 25px',
+            borderRadius: '0 0 25px 25px',
+        },
     },
-    },
-        singleMeal: {
+    singleMeal: {
         transition: 'none !important'
     },
-        modal: {
+    modal: {
         position: 'absolute',
         width: 400,
-        backgroundColor: "rgba(255,255,255,0.8)",
+        backgroundColor: "rgba(255,255,255,0.96)",
         boxShadow: '0 4px 5px rgba(0,0,0,0.3)',
         outline: 'none',
         top: '50%',
@@ -382,8 +414,25 @@ class Autocomplete extends Component {
         transform: 'translateX(-50%) translateY(-50%)',
         textAlign: 'center',
         fontFamily: 'Roboto, sans-serif',
-            borderRadius: '15px 15px 15px 15px'
-    }
-    };
-    export default withStyles(stylesAutocomplete)(Autocomplete);
+        borderRadius: '15px 15px 15px 15px',
+        paddingLeft: '15px',
+        paddingBottom: '10px',
+        paddingRight: '25px'
+
+    },
+
+    number: {
+        float: 'left',
+        width: '40%',
+    },
+    number2: {
+        width: '23.33%',
+
+    },
+    number3: {
+        float: 'right',
+        width: '30.33%',
+    },
+};
+export default withStyles(stylesAutocomplete)(Autocomplete);
 
