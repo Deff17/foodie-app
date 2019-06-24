@@ -193,7 +193,7 @@ class Autocomplete extends Component {
                 <div className={this.props.classes.searchBar}>
                     <div className={this.props.classes.advanceSearch}>
                         <button className={this.props.classes.advanceSearchButton} onClick={this.handleModalOpen}>
-                            Advance search
+                            Advanced search
                         </button>
                     </div>
                     <TextField
