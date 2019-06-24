@@ -311,7 +311,11 @@ const stylesAutocomplete = {
         textAlign: 'center',
         width: '100%',
         top: '15px',
-        position: 'absolute'
+        position: 'absolute',
+        ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
+            top: '100px',
+        },
+
     },
     searchBar: {
         width: '100%',
@@ -408,6 +412,7 @@ const stylesAutocomplete = {
         width: 400,
         backgroundColor: "rgba(255,255,255,0.96)",
         boxShadow: '0 4px 5px rgba(0,0,0,0.3)',
+        padding: '10px 15px 10px 15px',
         outline: 'none',
         top: '50%',
         left: '50%',
@@ -418,7 +423,6 @@ const stylesAutocomplete = {
         paddingLeft: '15px',
         paddingBottom: '10px',
         paddingRight: '25px'
-
     },
 
     number: {

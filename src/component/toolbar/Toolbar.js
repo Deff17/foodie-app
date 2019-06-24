@@ -67,7 +67,7 @@ const stylesToolbar = {
         fontSize: '7rem',
         textShadow: '0px 2px 6px rgba(0,0,0,0.5)',
         color: 'white',
-        margin: "150px 0 0 0"
+        margin: "70px 0 0 0"
     },
     underLogo: {
         fontFamily: "Ink Free Regular",
@@ -129,13 +129,16 @@ const stylesToolbar = {
         fontSize: '40px !important',
         border: '0 !important',
     },
-///////////////////////////// 
+/////////////////////////////
     rootResults: {
         backgroundColor: '#FCEDAB ',
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'row',
         boxShadow: '0 4px 5px -2px rgba(0,0,0,0.2)',
+        ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
+            height: '200px',
+        },
     },
     logoResults: {
         marginLeft: '50px',
@@ -160,4 +163,4 @@ const stylesToolbar = {
 };
 
 
-export default withStyles(stylesToolbar)(toolbar); 
+export default withStyles(stylesToolbar)(toolbar);
