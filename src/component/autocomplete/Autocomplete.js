@@ -208,6 +208,7 @@ class Autocomplete extends Component {
                         onChange={this.handleInputChange}
                         value={this.state.inputValue}
                         inputRef={this.textInput}
+                        placeholder={"Enter ingredients or dish name"}
                     >
                     </TextField>
                     <a href='/results' className={this.props.classes.aTagSearch}>
