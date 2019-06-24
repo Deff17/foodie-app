@@ -21,9 +21,6 @@ const recipe = (props) => {
 
     return (
         <div>
-            <div>
-                <Autocomplete isResultsPage={true}/>
-            </div>
             <div className={props.classes.colorBox}>
                 <div>
                     <IconButton href='/results'>
@@ -225,6 +222,7 @@ const stylesRecipe = {
         gridColumnEnd: '2',
         gridRowStart: '1',
         gridRowEnd: '1',
+        fontFamily: 'Roboto, sans-serif',
     },
 
     itemDescriptionTitleCell: {
@@ -232,6 +230,7 @@ const stylesRecipe = {
         gridColumnEnd: '4',
         gridRowStart: '1',
         gridRowEnd: '1',
+        fontFamily: 'Roboto, sans-serif',
     },
     itemIngredientsCell: {
         gridColumnStart: '2',
@@ -248,11 +247,14 @@ const stylesRecipe = {
         gridRowEnd: '3',
         backgroundColor: '#d6d6d6',
     },
-    itemIngredients: {},
+    itemIngredients: {
+        fontFamily: 'Roboto, sans-serif',
+    },
 
     itemDescription: {
         marginLeft: '20px',
         marginRight: '20px',
+        fontFamily: 'Roboto, sans-serif',
     },
 
     rating: {

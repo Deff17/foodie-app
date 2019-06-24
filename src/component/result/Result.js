@@ -105,6 +105,7 @@ const result = (props) => {
 const stylesResult = makeStyles(theme => ({
     root: {
         flexGrow: 1,
+        fontFamily: 'Roboto, sans-serif',
     }
 }));
 
